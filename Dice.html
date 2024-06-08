@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dice Roller</h1>
+        <button id="rollButton">Roll Dice</button>
+        <div id="dice">
+            <img src="images/dice1.png" alt="Dice" id="diceImage">
+        </div>
+        <div id="counts">
+            <h2>Counts:</h2>
+            <ul>
+                <li>1: <span id="count1">0</span></li>
+                <li>2: <span id="count2">0</span></li>
+                <li>3: <span id="count3">0</span></li>
+                <li>4: <span id="count4">0</span></li>
+                <li>5: <span id="count5">0</span></li>
+                <li>6: <span id="count6">0</span></li>
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+#dice img {
+    width: 100px;
+    height: 100px;
+}
+
+#counts ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#counts li {
+    font-size: 18px;
+    margin: 5px 0;
+}</style>
+<script>// Initialize counters for each dice side
+const counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0};
+
+document.getElementById('rollButton').addEventListener('click', rollDice);
+
+function rollDice() {
+    // Roll the dice
+    const roll = Math.floor(Math.random() * 6) + 1;
+
+    // Update the count for the rolled number
+    counts[roll] += 1;
+
+    // Update the dice image
+    document.getElementById('diceImage').src = `images/dice${roll}.png`;
+
+    // Update the counts display
+    for (let i = 1; i <= 6; i++) {
+        document.getElementById(`count${i}`).innerText = counts[i];
+    }
+}</script>
